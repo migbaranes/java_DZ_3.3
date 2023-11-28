@@ -4,21 +4,22 @@ public class CreditPaymentService {
     // S - сумма кредита;
     // P - размер годовой процентной ставки;
     // N - количество месяцев, в течении которых проводятся выплаты
-    public int calculate(int C, double M, int S) {
+    public int calculate(int summCredit, double monthlyInterestRate, int creditTerm) {
 
-       // double Se;
-        double X;
+        // double Se;
+        double annuityPayment;
         // Se = S * P / 12 * (Math.pow((1 + P / 12), N)) / (Math.pow((1 + P / 12), N-1));
-        X = C * ((M * (Math.pow((1 + M), S)))/(Math.pow((1 + M), S - 1)));
+        annuityPayment = summCredit * ((monthlyInterestRate/12) * (Math.pow((1 + monthlyInterestRate/12), creditTerm))) / (Math.pow((1 + monthlyInterestRate/12), creditTerm) - 1);
         // Х = С * К, К = (М * (1 + М) ^ S) / ((1 + М) ^ S — 1)
-        // где X — аннуитетный платеж,
-        //     С — сумма кредита,
+        // M = Mc / 12
+        // где, annuity payment — аннуитетный платеж,
+        //     summCredit — сумма кредита,
         //     К — коэффициент аннуитета,
-        //     М — месячная процентная ставка по кредиту,
-        //     S — срок кредита в месяцах.
+        //     monthlyInterestRate — месячная процентная ставка по кредиту,
+        //     credit term — срок кредита в месяцах.
 
         //return (int) Se;
-        return (int) X;
+        return (int) annuityPayment;
     }
 
 }
